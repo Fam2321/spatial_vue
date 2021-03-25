@@ -2,10 +2,10 @@ import axios from "axios";
 
 class HttpRequest {
   constructor() {
-    // this.axios = axios
-    axios.defaults.headers.common['Access-Control-Allow-Origin'] = 'http://localhost:8080/';
+    axios.defaults.headers.common["Access-Control-Allow-Origin"] =
+      "*";
     this.axiosInstance = axios.create({
-      baseURL: "http://localhost:8080/",
+      baseURL: "http://localhost:8080/api",
       timeout: 120000,
     });
 
@@ -46,7 +46,7 @@ class HttpRequest {
     });
   }
 
-  create(methodName, data) {
+  post(methodName, data) {
     return this.axiosInstance.post(methodName, data);
   }
 

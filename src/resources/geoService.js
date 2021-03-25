@@ -3,7 +3,7 @@ import injector from "vue-inject";
 
 class GeoService extends HttpRequest {
   getData1() {
-    return this.get("/find",{});
+    return this.get("/visual/find", {});
   }
 }
 

@@ -10,7 +10,7 @@ require("./bootstrap");
 
 Vue.use(VueGoogleMaps, {
   load: {
-    key: "AIzaSyCDeMIo1gXKSgrcAtq6ams9VaOSQ1GnEcU",
+    key: "",
     libraries: "places,drawing,visualization",
   },
 });
