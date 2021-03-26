@@ -1,35 +1,49 @@
 <template>
   <div id="app">
-    <google-map :GeoJson="this.ff" />
-    <!-- {{ff}} -->
-    <upload-excel />
+    <sidebar-menu :menu="menu" :theme="theme" :hideToggle="hideToggle" />
+    <router-view style="padding-left: 350px" />
   </div>
 </template>
 
 <script>
-import GoogleMap from "./components/GoogleMap.vue";
-import UploadExcel from "./components/UploadExcel.vue";
-
+import { SidebarMenu } from "vue-sidebar-menu";
 export default {
   name: "App",
-  dependencies: ["geoService"],
   components: {
-    GoogleMap,
-    UploadExcel,
+    SidebarMenu,
   },
   data() {
     return {
-      ff: {},
+      menu: [
+        {
+          header: true,
+          title: "Spatial And GIS",
+          hiddenOnCollapse: true,
+        },
+        {
+          href: "/visaul",
+          title: "Visual",
+          icon: "fa fa-user",
+        },
+        {
+          href: "/",
+          title: "Upload",
+          icon: "fa fa-chart-area",
+        },
+      ],
+      // Sidebar theme (available themes: 'white-theme')
+      theme: "white-theme",
+      hideToggle: true,
     };
-  },
-  async created() {
-    this.ff = await this.getdata();
-  },
-  methods: {
-    async getdata() {
-      const { data } = await this.geoService.getData1();
-      return data[0];
-    },
   },
 };
 </script>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+}
+</style>

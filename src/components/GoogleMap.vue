@@ -5,7 +5,7 @@
       ref="mapRef"
       :center="center"
       :zoom="4"
-      style="width: 100%; height: 400px"
+      style="width: 100%; height: 920px"
     />
     {{ GeoJson }}
   </div>

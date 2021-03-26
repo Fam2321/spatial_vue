@@ -2,8 +2,7 @@ import axios from "axios";
 
 class HttpRequest {
   constructor() {
-    axios.defaults.headers.common["Access-Control-Allow-Origin"] =
-      "*";
+    axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
     this.axiosInstance = axios.create({
       baseURL: "http://localhost:8080/api",
       timeout: 120000,
