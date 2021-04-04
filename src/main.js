@@ -5,6 +5,7 @@ import App from "./App.vue";
 import router from "./router";
 import VueSidebarMenu from "vue-sidebar-menu";
 import "vue-sidebar-menu/dist/vue-sidebar-menu.css";
+import vuetify from "@/plugins/vuetify";
 
 Vue.use(VueSidebarMenu);
 
@@ -22,5 +23,9 @@ Vue.use(VueGoogleMaps, {
 
 new Vue({
   router,
+  vuetify,
   render: (h) => h(App),
 }).$mount("#app");
+
+const opts = {};
+export default new Vuetify(opts);

@@ -1,8 +1,10 @@
 <template>
-  <div id="app">
-    <sidebar-menu :menu="menu" :theme="theme" :hideToggle="hideToggle" />
-    <router-view style="padding-left: 350px" />
-  </div>
+  <v-app>
+    <div id="app">
+      <sidebar-menu :menu="menu" :theme="theme" :hideToggle="hideToggle" />
+      <router-view style="padding-left: 350px" />
+    </div>
+  </v-app>
 </template>
 
 <script>
@@ -14,25 +16,30 @@ export default {
   },
   data() {
     return {
+      separator: {
+        template: `<hr style="border-color: rgba(0, 0, 0, 0.1); margin: 20px;">`,
+      },
       menu: [
         {
           header: true,
           title: "Spatial And GIS",
-          hiddenOnCollapse: true,
         },
         {
           href: "/visaul",
           title: "Visual",
-          icon: "fa fa-user",
+          icon: "mdi-view-dashboard",
         },
         {
           href: "/",
+          title: "Report",
+          icon: "fa fa-user",
+        },
+        {
+          href: "/upload",
           title: "Upload",
           icon: "fa fa-chart-area",
         },
       ],
-      // Sidebar theme (available themes: 'white-theme')
-      theme: "white-theme",
       hideToggle: true,
     };
   },

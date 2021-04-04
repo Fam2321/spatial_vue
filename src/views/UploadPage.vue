@@ -1,5 +1,5 @@
 <template>
-  <div id="upload">
+  <div id="upload" style="margin: 3%">
     <upload-excel />
   </div>
 </template>

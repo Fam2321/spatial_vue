@@ -14,7 +14,8 @@
     "vue": "^2.6.11",
     "vue-router": "^3.5.1",
     "vue-sidebar-menu": "^4.7.4",
-    "vue2-google-maps": "^0.10.7"
+    "vue2-google-maps": "^0.10.7",
+    "vuetify": "^2.4.8"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.5.0",
@@ -22,10 +23,13 @@
     "@vue/cli-service": "^4.5.0",
     "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.1.0",
+    "deepmerge": "^4.2.2",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^6.2.2",
     "prettier": "^2.2.1",
+    "sass": "^1.32.8",
+    "sass-loader": "^11.0.1",
     "vue-inject": "^2.1.1",
     "vue-template-compiler": "^2.6.11"
   },

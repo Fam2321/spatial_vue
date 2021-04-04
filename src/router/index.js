@@ -5,14 +5,19 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
+    path: "/visaul",
+    name: "Visaul",
+    component: () => import("../views/VisaulPage.vue"),
+  },
+  {
+    path: "/upload",
     name: "Upload",
     component: () => import("../views/UploadPage.vue"),
   },
   {
-    path: "/visaul",
-    name: "Visaul",
-    component: () => import("../views/VisaulPage.vue"),
+    path: "/",
+    name: "Report",
+    component: () => import("../views/ReportPage.vue"),
   },
 ];
 

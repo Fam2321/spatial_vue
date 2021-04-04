@@ -1,12 +1,12 @@
 import axios from "axios";
 
-class HttpRequest {
+class ExcelRequest {
   constructor() {
     axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
     this.axiosInstance = axios.create({
       baseURL: "http://localhost:8080/api",
       timeout: 120000,
-      // responseType: 'arraybuffer'
+      responseType: "arraybuffer",
     });
 
     this.axiosInstance.interceptors.request.use(
@@ -84,4 +84,4 @@ class HttpRequest {
   }
 }
 
-export default HttpRequest;
+export default ExcelRequest;
