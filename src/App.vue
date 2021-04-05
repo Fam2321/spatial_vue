@@ -1,8 +1,13 @@
 <template>
   <v-app>
     <div id="app">
-      <sidebar-menu :menu="menu" :theme="theme" :hideToggle="hideToggle" />
-      <router-view style="padding-left: 350px" />
+      <sidebar-menu
+        :menu="menu"
+        :theme="theme"
+        :hideToggle="hideToggle"
+        :width="width"
+      />
+      <router-view style="padding-left: 250px" />
     </div>
   </v-app>
 </template>
@@ -16,9 +21,6 @@ export default {
   },
   data() {
     return {
-      separator: {
-        template: `<hr style="border-color: rgba(0, 0, 0, 0.1); margin: 20px;">`,
-      },
       menu: [
         {
           header: true,
@@ -27,20 +29,18 @@ export default {
         {
           href: "/visaul",
           title: "Visual",
-          icon: "mdi-view-dashboard",
         },
         {
           href: "/",
           title: "Report",
-          icon: "fa fa-user",
         },
         {
           href: "/upload",
           title: "Upload",
-          icon: "fa fa-chart-area",
         },
       ],
       hideToggle: true,
+      width: "250px",
     };
   },
 };
