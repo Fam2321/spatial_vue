@@ -9,7 +9,13 @@
           <v-btn color="normal" @click="downloadButton"> Download </v-btn>
         </v-col>
       </v-row>
-      {{ dada }}
+      <v-data-table
+        :headers="headers"
+        :items="dada"
+        :items-per-page="10"
+        class="elevation-1"
+      ></v-data-table>
+      <!-- {{ dada }} -->
     </v-container>
   </v-form>
 </template>
@@ -20,6 +26,15 @@ export default {
   dependencies: ["excelService", "reportService"],
   data: () => ({
     dada: [],
+    headers: [
+      {
+        text: "country",
+        align: "start",
+        sortable: false,
+        value: "country",
+      },
+      { text: "avg", value: "avg" },
+    ],
   }),
   methods: {
     async downloadButton() {

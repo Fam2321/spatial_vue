@@ -27,7 +27,13 @@
           <v-btn color="normal" @click="downloadButton"> Download </v-btn>
         </v-col>
       </v-row>
-      {{ dada }}
+      <v-data-table
+        :headers="headers"
+        :items="dada"
+        :items-per-page="10"
+        class="elevation-1"
+      ></v-data-table>
+      <!-- {{ dada }} -->
     </v-container>
   </v-form>
 </template>
@@ -42,6 +48,24 @@ export default {
     year: "",
     yearlist: ["2015", "2016"],
     dada: [],
+    headers: [
+      {
+        text: "country",
+        align: "start",
+        sortable: false,
+        value: "country",
+      },
+      { text: "city", value: "city" },
+      { text: "pm25", value: "pm25" },
+      { text: "latitude", value: "latitude" },
+      { text: "longitude", value: "longitude" },
+      { text: "population", value: "population" },
+      { text: "wbinc16_text", value: "wbinc16_text" },
+      { text: "conc_pm25", value: "conc_pm25" },
+      { text: "color_pm25", value: "color_pm25" },
+      { text: "year", value: "year" },
+      { text: "region", value: "region" },
+    ],
   }),
   methods: {
     async downloadButton() {
