@@ -2,8 +2,10 @@
   <div>
     <v-card flat>
       <GmapMap :center="center" :zoom="zoom" style="width: 100%; height: 920px">
+        <gmap-polygon :paths="outerCoords"></gmap-polygon>
         <GmapMarker
           :key="index"
+          ref="mapRef"
           v-for="(m, index) in markers"
           :position="m.position"
           :clickable="false"
@@ -46,7 +48,7 @@
                 <v-btn
                   text
                   color="teal accent-4"
-                  @click="condition = false"
+                  @click="no2 = true"
                   :disabled="overlay"
                 >
                   city of Thailand’s neighboring
@@ -56,7 +58,7 @@
                 <v-btn
                   text
                   color="teal accent-4"
-                  @click="condition = false"
+                  @click="no4 = true"
                   :disabled="overlay"
                 >
                   MBR in Thailand
@@ -107,6 +109,50 @@
                   </v-btn>
                 </v-card-actions>
               </v-card>
+              <v-card
+                v-if="no2"
+                class="transition-fast-in-fast-out v-card--reveal"
+                style="height: 100%; padding: 10px"
+              >
+                <v-card-actions class="pt-0">
+                  <v-select
+                    v-model="year"
+                    :items="yearlist"
+                    label="Year"
+                    required
+                  ></v-select>
+                </v-card-actions>
+                <v-card-actions class="pt-0">
+                  <v-btn text color="teal accent-4" @click="no2 = false">
+                    Close
+                  </v-btn>
+                  <v-btn color="normal" @click="setMarkerNo3" right>
+                    Mark
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+              <v-card
+                v-if="no4"
+                class="transition-fast-in-fast-out v-card--reveal"
+                style="height: 100%; padding: 10px"
+              >
+                <v-card-actions class="pt-0">
+                  <v-select
+                    v-model="year"
+                    :items="yearlist"
+                    label="Year"
+                    required
+                  ></v-select>
+                </v-card-actions>
+                <v-card-actions class="pt-0">
+                  <v-btn text color="teal accent-4" @click="no4 = false">
+                    Close
+                  </v-btn>
+                  <v-btn color="normal" @click="setMarkerNo4" right>
+                    Mark
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
             </v-expand-transition>
           </v-card>
         </v-navigation-drawer>
@@ -130,29 +176,45 @@ export default {
       markers: [],
       no1: false,
       no2: false,
+      no4: false,
       year: "",
       yearlist: ["2015", "2016"],
+      outerCoords: [],
     };
   },
   methods: {
     async setMarkerNo1() {
       this.overlay = true;
+      this.outerCoords = [];
       var res = await this.geoService.getCityPoint(this.year);
       this.markers = res.data;
       this.overlay = false;
     },
     async setMarkerNo2() {
       this.overlay = true;
+      this.outerCoords = [];
       var res = await this.geoService.getClosetCity();
-      var format = [];
-      res.data.forEach((element) => {
-        format.push({
-          position: { lat: element.latitude, lng: element.longitude },
-        });
-      });
       this.center = { lat: 14.14075333490046, lng: 100.67704709412011 };
       this.zoom = 6;
-      this.markers = format;
+      this.markers = res.data;
+      this.overlay = false;
+    },
+    async setMarkerNo3() {
+      this.overlay = true;
+      this.outerCoords = [];
+      var res = await this.geoService.getThaiNeighbor(this.year);
+      this.center = { lat: 14.14075333490046, lng: 100.67704709412011 };
+      this.zoom = 6;
+      this.markers = res.data;
+      this.overlay = false;
+    },
+    async setMarkerNo4() {
+      this.overlay = true;
+      this.markers = [];
+      this.center = { lat: 14.14075333490046, lng: 100.67704709412011 };
+      this.zoom = 6;
+      var res = await this.geoService.getMBR(this.year);
+      this.outerCoords = res.data;
       this.overlay = false;
     },
     async getYear() {
