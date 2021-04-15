@@ -20,6 +20,16 @@ class GeoService extends HttpRequest {
       year: year,
     });
   }
+  getCountryHaveMostCity(year) {
+    return this.get("/visual/findMostCity", {
+      year: year,
+    });
+  }
+  getCitiesLowIncome(year) {
+    return this.get("/visual/findLowIncome", {
+      year: year,
+    });
+  }
 }
 
 injector.service("geoService", GeoService);

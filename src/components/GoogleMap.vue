@@ -68,7 +68,7 @@
                 <v-btn
                   text
                   color="teal accent-4"
-                  @click="condition = false"
+                  @click="no5 = true"
                   :disabled="overlay"
                 >
                   highest no. of city points
@@ -78,7 +78,7 @@
                 <v-btn
                   text
                   color="teal accent-4"
-                  @click="condition = false"
+                  @click="no6 = true"
                   :disabled="overlay"
                 >
                   city has low income
@@ -153,6 +153,50 @@
                   </v-btn>
                 </v-card-actions>
               </v-card>
+              <v-card
+                v-if="no5"
+                class="transition-fast-in-fast-out v-card--reveal"
+                style="height: 100%; padding: 10px"
+              >
+                <v-card-actions class="pt-0">
+                  <v-select
+                    v-model="year"
+                    :items="yearlist"
+                    label="Year"
+                    required
+                  ></v-select>
+                </v-card-actions>
+                <v-card-actions class="pt-0">
+                  <v-btn text color="teal accent-4" @click="no5 = false">
+                    Close
+                  </v-btn>
+                  <v-btn color="normal" @click="setMarkerNo5" right>
+                    Mark
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+              <v-card
+                v-if="no6"
+                class="transition-fast-in-fast-out v-card--reveal"
+                style="height: 100%; padding: 10px"
+              >
+                <v-card-actions class="pt-0">
+                  <v-select
+                    v-model="year"
+                    :items="yearlist"
+                    label="Year"
+                    required
+                  ></v-select>
+                </v-card-actions>
+                <v-card-actions class="pt-0">
+                  <v-btn text color="teal accent-4" @click="no6 = false">
+                    Close
+                  </v-btn>
+                  <v-btn color="normal" @click="setMarkerNo6" right>
+                    Mark
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
             </v-expand-transition>
           </v-card>
         </v-navigation-drawer>
@@ -177,6 +221,8 @@ export default {
       no1: false,
       no2: false,
       no4: false,
+      no5: false,
+      no6: false,
       year: "",
       yearlist: ["2015", "2016"],
       outerCoords: [],
@@ -215,6 +261,24 @@ export default {
       this.zoom = 6;
       var res = await this.geoService.getMBR(this.year);
       this.outerCoords = res.data;
+      this.overlay = false;
+    },
+    async setMarkerNo5() {
+      this.overlay = true;
+      this.outerCoords = [];
+      var res = await this.geoService.getCountryHaveMostCity(this.year);
+      this.center = { lat: 17.56, lng: -3.77 };
+      this.zoom = 3;
+      this.markers = res.data;
+      this.overlay = false;
+    },
+    async setMarkerNo6() {
+      this.overlay = true;
+      this.outerCoords = [];
+      var res = await this.geoService.getCitiesLowIncome(this.year);
+      this.center = { lat: 17.56, lng: -3.77 };
+      this.zoom = 3;
+      this.markers = res.data;
       this.overlay = false;
     },
     async getYear() {
