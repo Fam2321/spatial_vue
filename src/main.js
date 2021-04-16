@@ -6,6 +6,7 @@ import router from "./router";
 import VueSidebarMenu from "vue-sidebar-menu";
 import "vue-sidebar-menu/dist/vue-sidebar-menu.css";
 import vuetify from "@/plugins/vuetify";
+import Vuetify from "vuetify";
 
 Vue.use(VueSidebarMenu);
 
