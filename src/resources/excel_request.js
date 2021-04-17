@@ -4,7 +4,7 @@ class ExcelRequest {
   constructor() {
     axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
     this.axiosInstance = axios.create({
-      baseURL: "http://localhost:8080/api",
+      baseURL: "https://goaldiggerspring.azurewebsites.net/api",
       timeout: 120000,
       responseType: "arraybuffer",
     });
