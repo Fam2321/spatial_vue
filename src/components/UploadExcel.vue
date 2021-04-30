@@ -15,7 +15,13 @@
         </v-col>
 
         <v-col cols="4">
-          <v-btn color="success" dark small @click="submitForm">
+          <v-btn
+            color="success"
+            dark
+            small
+            @click="submitForm"
+            :disabled="this.file == ''"
+          >
             Upload
             <v-icon right dark>mdi-cloud-upload</v-icon>
           </v-btn>

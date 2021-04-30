@@ -1,7 +1,7 @@
 module.exports = {
   devServer: {
     port: 3030,
-    proxy: "http://localhost:8080",
+    proxy: "https://goaldiggerspring.azurewebsites.net",
   },
   lintOnSave: true,
   transpileDependencies: ["vuetify"],
